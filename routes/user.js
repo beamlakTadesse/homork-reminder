@@ -52,13 +52,13 @@ route.get('/', (req, res, next) => {
 
 
 var upload = multer();
-// upload.single('img'),
-route.post('/signup', (req, res, next) => {
+
+route.post('/signup',upload.single('img'), (req, res, next) => {
     User.register(new User({
         username: req.body.username,
         name: req.body.name,
         email: req.body.email,
-      //  img: req.file.buffer 
+       img: req.file.buffer 
     }), req.body.password, (err, user) => {
 
         if (err) {
